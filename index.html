@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Minha Rotina de Treinos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .glass {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        border-radius: 1rem;
+      }
+    </style>
+  </head>
+  <body class="bg-gradient-to-br from-slate-900 to-gray-800 text-white min-h-screen">
+    <div class="flex justify-between items-center p-4">
+      <h1 class="text-2xl font-bold">Minha Rotina de Treinos</h1>
+      <button id="settingsBtn" class="glass p-2 px-4">⚙️</button>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-4" id="daysContainer">
+        <button id="btn-Segunda-feira" class="glass p-4 text-center" onclick="openDay('Segunda-feira')">Segunda-feira</button>
+        <button id="btn-Terça-feira" class="glass p-4 text-center" onclick="openDay('Terça-feira')">Terça-feira</button>
+        <button id="btn-Quarta-feira" class="glass p-4 text-center" onclick="openDay('Quarta-feira')">Quarta-feira</button>
+        <button id="btn-Quinta-feira" class="glass p-4 text-center" onclick="openDay('Quinta-feira')">Quinta-feira</button>
+        <button id="btn-Sexta-feira" class="glass p-4 text-center" onclick="openDay('Sexta-feira')">Sexta-feira</button>
+        <button id="btn-Sábado" class="glass p-4 text-center" onclick="openDay('Sábado')">Sábado</button>
+        <button id="btn-Domingo" class="glass p-4 text-center" onclick="openDay('Domingo')">Domingo</button>
+      </div>
+      
+
+    <!-- Modal Configurações -->
+    <div id="settingsModal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center p-4 overflow-auto">
+      <div class="glass w-full max-w-3xl p-6 relative max-h-[90vh] overflow-y-auto">
+        <button id="closeSettings" class="absolute top-2 right-2 text-xl">❌</button>
+        <h2 class="text-xl font-bold mb-4">Configurações de Exercícios</h2>
+        
+        <div id="exercisesByDay" class="mb-6 space-y-4"></div>
+        
+        <hr class="my-4 border-gray-400" />
+        
+        <h3 class="text-lg font-semibold mb-2">Adicionar Novo Exercício</h3>
+        <form id="addExerciseForm" class="space-y-4">
+          <input type="text" id="exerciseName" placeholder="Nome do exercício" required class="w-full p-2 rounded bg-white bg-opacity-10" />
+          <input type="text" id="exerciseSeries" placeholder="Séries (ex: 3x10-12)" required class="w-full p-2 rounded bg-white bg-opacity-10" />
+          <input type="url" id="exerciseVideo" placeholder="URL do vídeo (embed YouTube)" required class="w-full p-2 rounded bg-white bg-opacity-10" />
+          <select id="exerciseDay" required class="w-full p-2 rounded bg-white bg-opacity-10">
+            <option value="">Escolha o dia</option>
+            <option value="Segunda-feira">Segunda-feira</option>
+            <option value="Terça-feira">Terça-feira</option>
+            <option value="Quarta-feira">Quarta-feira</option>
+            <option value="Quinta-feira">Quinta-feira</option>
+            <option value="Sexta-feira">Sexta-feira</option>
+            <option value="Sábado">Sábado</option>
+            <option value="Domingo">Domingo</option>
+          </select>
+          <button id="saveSettingsBtn" class="mt-4 bg-green-500 hover:bg-green-600 px-4 py-2 rounded text-white">
+            Salvar Alterações
+          </button>
+          
+          <button type="submit" class="glass px-4 py-2 font-bold hover:bg-white hover:bg-opacity-20 transition">Adicionar</button>
+        </form>
+      </div>
+    </div>
+  
+    <!-- Modal Treino -->
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center p-4">
+      <div class="glass w-full max-w-2xl p-6 relative max-h-[80vh] overflow-y-auto">
+        <button id="closeModal" class="absolute top-2 right-2 text-xl">❌</button>
+        <h2 id="dayTitle" class="text-xl font-bold mb-4"></h2>
+        <ul id="exerciseList" class="space-y-4"></ul>
+        <div id="completedMsg" class="mt-6 text-green-400 font-bold hidden">✅ Treino do dia concluído!</div>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
